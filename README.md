@@ -10,7 +10,9 @@ This is a WIP of a Windows 10 IoT brewing controller using, for example, a Raspb
 - Sous Vide capabilities
 - Delayed brewing mode
 
-
+![Screenshot](https://github.com/Gotnoname/windowsiot-brewitUP/blob/master/NewBrewPi/ImageExamples/1.png)
+![Screenshot](https://github.com/Gotnoname/windowsiot-brewitUP/blob/master/NewBrewPi/ImageExamples/2.png)
+![Screenshot](https://github.com/Gotnoname/windowsiot-brewitUP/blob/master/NewBrewPi/ImageExamples/3.png)
 
 # External
 - https://github.com/Rinsen/OneWire
