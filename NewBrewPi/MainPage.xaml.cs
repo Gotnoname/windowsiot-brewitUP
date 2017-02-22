@@ -1,7 +1,7 @@
 ﻿using BrewLib;
 using BrewLib.Databse;
-using NewBrewPi.Views;
-using NewBrewPi.Views.Profile;
+using BrewitUP.Views;
+using BrewitUP.Views.Profile;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,7 +21,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace NewBrewPi
+namespace BrewitUP
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.

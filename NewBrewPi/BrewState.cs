@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NewBrewPi
+namespace BrewitUP
 {
     public class BrewState : IDisposable
     {

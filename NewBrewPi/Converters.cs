@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace NewBrewPi
+namespace BrewitUP
 {
     public class TimeRemainingStepConverter : DependencyObject, IValueConverter
     {
@@ -214,16 +214,16 @@ namespace NewBrewPi
             switch (type)
             {
                 case UIMessageType.Error:
-                    img = new BitmapImage(new Uri("ms-appx://NewBrewPi/Assets/delete.png"));
+                    img = new BitmapImage(new Uri("ms-appx://BrewitUP/Assets/delete.png"));
                     break;
                 case UIMessageType.Information:
-                    img = new BitmapImage(new Uri("ms-appx://NewBrewPi/Assets/ExclamationMark.png"));
+                    img = new BitmapImage(new Uri("ms-appx://BrewitUP/Assets/ExclamationMark.png"));
                     break;
                 case UIMessageType.Question:
-                    img = new BitmapImage(new Uri("ms-appx://NewBrewPi/Assets/QuestionMark.png"));
+                    img = new BitmapImage(new Uri("ms-appx://BrewitUP/Assets/QuestionMark.png"));
                     break;
                 case UIMessageType.Warning:
-                    img = new BitmapImage(new Uri("ms-appx://NewBrewPi/Assets/Warning.png"));
+                    img = new BitmapImage(new Uri("ms-appx://BrewitUP/Assets/Warning.png"));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

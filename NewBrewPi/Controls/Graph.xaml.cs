@@ -23,7 +23,7 @@ using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace NewBrewPi.Controls 
+namespace BrewitUP.Controls 
 {
     
     public sealed partial class Graph : UserControl, INotifyPropertyChanged

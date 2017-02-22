@@ -1,12 +1,12 @@
 ﻿<Page
-    x:Class="NewBrewPi.Views.NewProfile"
+    x:Class="BrewitUP.Views.NewProfile"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:NewBrewPi.Views"
+    xmlns:local="using:BrewitUP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:NewBrewPi.Controls"
-    xmlns:conv="using:NewBrewPi"
+    xmlns:controls="using:BrewitUP.Controls"
+    xmlns:conv="using:BrewitUP"
     Width="750"
     Height="480"
     mc:Ignorable="d">

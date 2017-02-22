@@ -3,7 +3,7 @@
   <Identity Name="a77aeed5-1c09-4551-afac-3f54fc0460f3" Publisher="CN=Gotnoname" Version="0.1.15.0" />
   <mp:PhoneIdentity PhoneProductId="a77aeed5-1c09-4551-afac-3f54fc0460f3" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>NewBrewPi</DisplayName>
+    <DisplayName>BrewitUP</DisplayName>
     <PublisherDisplayName>Gotnoname</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
