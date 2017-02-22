@@ -1,0 +1,108 @@
+﻿<Page
+    x:Class="NewBrewPi.Views.Profile.SelectProfile"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewBrewPi.Views.Profile"
+    xmlns:conv="using:NewBrewPi"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
+    Width="750"
+    Height="480"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:StepsToIngredientAmountConverter x:Key="StepsToIngredientConv"/>
+        <conv:StepsToMashingStepsAmountConverter x:Key="StepsToMashConv"/>
+        <conv:StepsToBoilingTimeAmountConverter x:Key="StepsToBoilTimeConv"/>
+    </Page.Resources>
+    
+    <Grid>
+        <ListView               
+            SelectionMode="Single"
+            IsSwipeEnabled="True"
+            Style="{StaticResource ListviewWiderScrollbar}"
+            ItemsSource="{Binding Path=Profiles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="150"                          
+                          Margin="6" 
+                          Background="#65878E" 
+                          PointerPressed="Grid_Tapped">
+                        <FlyoutBase.AttachedFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Start brewing" Click="StartBrewingFlyoutItem_Tapped"/>
+                                <MenuFlyoutItem Text="Delayed brewing" Click="DelayedStartBrewingFlyoutItem_Tapped"/>
+                                <MenuFlyoutItem Text="Edit profile" Click="EditProfileFlyoutItem_Tapped"/>
+                                <MenuFlyoutItem Text="Delete profile" Click="DeleteProfileFlyoutItem_Tapped"/>                                
+                            </MenuFlyout>
+                        </FlyoutBase.AttachedFlyout>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock  Text="{Binding Path=Name, FallbackValue=Lucky Jack}"
+                    HorizontalAlignment="Center"
+                    FontSize="30"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Grid.Row="0"
+                    Margin="0,0,0,10"
+                    Grid.ColumnSpan="3"/>
+
+                        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="1"
+                    
+                    HorizontalAlignment="Center">
+                            <StackPanel>
+                                <Image Source="../../Assets/ingredient.png" Width="80"></Image>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Steps, Converter={StaticResource StepsToIngredientConv}}"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"/>
+                                    <TextBlock Text=" ingredients"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Margin="20,0,0,0">
+                                <Image Source="../../Assets/mash.png" Width="80"></Image>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Steps, Converter={StaticResource StepsToMashConv}}"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"/>
+                                    <TextBlock Text=" mashing steps"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Margin="20,0,0,0">
+                                <Image Source="../../Assets/thermometer.png" Width="80"></Image>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Steps, Converter={StaticResource StepsToBoilTimeConv}}"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"/>
+                                    <TextBlock Text=" minute boiling"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>        
+    </Grid>
+</Page>

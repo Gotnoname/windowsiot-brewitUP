@@ -1,0 +1,67 @@
+﻿<UILogger:UIMessagerUIControl
+    x:Class="NewBrewPi.Controls.UserNotification"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewBrewPi.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:conv="using:NewBrewPi"
+    xmlns:UILogger="using:BrewLib"
+    mc:Ignorable="d">
+
+    <UILogger:UIMessagerUIControl.Resources>
+        <conv:UIMessageTypeConverter x:Key="TypeToImageConv"/>
+        <BitmapImage x:Key="DefaultImage" UriSource="../Assets/ExclamationMark.png" />
+    </UILogger:UIMessagerUIControl.Resources>
+    
+    <Grid Background="#3E5E85">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <TextBlock Text="{Binding Path=Title, FallbackValue=This is the title}" 
+                       FontSize="30"
+                       FontWeight="SemiBold"
+                       Foreground="White"
+                       Margin="6"
+                       VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <Image 
+            Grid.Row="1"
+            Grid.Column="0"
+            VerticalAlignment="Top"
+            Width="50"
+            Height="50"
+            Margin="6"
+            Source="{Binding Path=MessageType, 
+            Converter={StaticResource TypeToImageConv},
+            FallbackValue={StaticResource DefaultImage}}"></Image>
+
+        <ScrollViewer Grid.Row="1"
+                      Grid.Column="1"
+                      Height="100">
+            <TextBlock Text="{Binding Path=TextContent, FallbackValue=This is the content text}"
+                   TextWrapping="WrapWholeWords"
+                   Margin="6"
+                   Foreground="White"
+                   HorizontalAlignment="Left"></TextBlock>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    x:Name="ButtonPanel">
+        </StackPanel>
+
+    </Grid>
+</UILogger:UIMessagerUIControl>

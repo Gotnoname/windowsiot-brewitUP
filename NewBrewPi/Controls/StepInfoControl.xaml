@@ -1,0 +1,88 @@
+﻿<UserControl
+    x:Class="NewBrewPi.Controls.StepInfoControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewBrewPi.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:conv="using:NewBrewPi"
+    mc:Ignorable="d"
+    d:DesignHeight="95"
+    d:DesignWidth="250"
+    x:Name="StepInfo">
+
+    <UserControl.Resources>
+        <conv:NumericToTemperatureStringConverter x:Key="DegreeConverter"></conv:NumericToTemperatureStringConverter>
+        <conv:StepToNextSubStepSecondsConverter x:Key="StepToNextSubStepSecondsConv" 
+                                                Step="{Binding ElementName=StepInfo, Path=BrewStep}"/>
+        <conv:TimeRemainingStepConverter x:Key="TimeRemainingStepConv" 
+                                         Step="{Binding ElementName=StepInfo, Path=BrewStep}"/>
+        <conv:SubStepAnyVisibilityConverter x:Key="SubStepAnyVisiblityConv"/>
+    </UserControl.Resources>
+    
+    <Grid>
+
+        <StackPanel Margin="5,0,0,0">
+            <TextBlock Text="{Binding ElementName=StepInfo, Path=BrewStep.Type}"                   
+                   Foreground="White"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Left"
+                   Grid.Row="0" Grid.Column="0"/>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding ElementName=StepInfo, Path=BrewStep.Temperature, Converter={StaticResource DegreeConverter}}"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   Foreground="White"
+                   Grid.Row="1" Grid.Column="0"/>
+                <TextBlock Text=" celcius"
+                   Foreground="#AFD9CF"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding ElementName=StepInfo, Path=BrewStep.LengthMinutes}"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   Foreground="White"
+                   Margin="30,0,0,0"/>
+                    <TextBlock Text=" minutes"
+                   Foreground="#AFD9CF"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding ElementName=StepInfo, Path=BrewStep.ElapsedSeconds, Converter={StaticResource TimeRemainingStepConv}}"
+                   FontWeight="Bold"
+                   FontSize="18"
+                   Foreground="White"
+                   Grid.Row="3" Grid.Column="0"/>
+                <TextBlock Text=" remaining"
+                   Grid.Row="3"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Foreground="#AFD9CF"
+                   Grid.Column="1"/>                
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Visibility="{Binding ElementName=StepInfo, Path=BrewStep, Converter={StaticResource SubStepAnyVisiblityConv}}">
+                <TextBlock Text="{Binding ElementName=StepInfo, Path=BrewStep.ElapsedSeconds, Converter={StaticResource StepToNextSubStepSecondsConv}}"
+                   FontWeight="Bold"
+                    FontSize="18"
+                   Foreground="White"
+                   Grid.Row="3" Grid.Column="0">
+                </TextBlock>
+
+                <TextBlock Text=" until ingredients"
+                   Grid.Row="3"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Foreground="#AFD9CF"
+                   Grid.Column="1"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

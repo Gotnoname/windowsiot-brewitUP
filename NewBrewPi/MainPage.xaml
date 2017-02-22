@@ -1,0 +1,122 @@
+﻿<Page
+    x:Class="NewBrewPi.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewBrewPi"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:NewBrewPi.Controls"
+    Width="800"
+    Height="480"
+    mc:Ignorable="d">    
+    <SplitView x:Name="MainMenuSplitView" 
+               DisplayMode="CompactOverlay" 
+               IsPaneOpen="False" 
+              CompactPaneLength="50"
+               OpenPaneLength="150">
+
+        <SplitView.Background>
+            <ImageBrush ImageSource="../Assets/background.png"></ImageBrush>
+        </SplitView.Background>
+
+        <SplitView.Pane>
+            <StackPanel>
+                <StackPanel.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.8"/>
+                </StackPanel.Background>
+
+                <Button x:Name="MainMenuButton" 
+                        FontFamily="Segoe MDL2 Assets" 
+                        Content="&#xE700;"
+                        Width="40" 
+                        Height="40"
+                        Foreground="White"
+                        Background="Transparent" 
+                        Click="MainMenuButton_Click"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        Width="50"                           
+                        Click="HomeButton_Click"
+                        Height="50">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Assets/House-128.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="Home" 
+                               Foreground="White"
+                               Margin="5,0,0,0"
+                               VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Button 
+                        FontFamily="Segoe MDL2 Assets" 
+                        Content=""
+                        Width="50" 
+                        Height="50"
+                        FontSize="25"
+                        Foreground="White"
+                        Background="Transparent" 
+                        Click="AddNewProfile_Click"/>
+                    <TextBlock Text="New profile" 
+                               Foreground="White"
+                               
+                               VerticalAlignment="Center"></TextBlock>
+                </StackPanel>                
+
+                <StackPanel Orientation="Horizontal">
+                    <Button 
+                        Width="50" 
+                        Height="50"
+                        Foreground="White"
+                        Click="WiFiSettings_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Assets/Wifi-128.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="WiFi settings" 
+                               Foreground="White"
+                               
+                               VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button 
+                        Width="50" 
+                        Height="50"
+                        Foreground="White"
+                        Click="SouseVide_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Assets/Beverage-Coffee-02-128.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="Sous Vide" 
+                               Foreground="White"
+                               
+                               VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        Width="50"                         
+                        Click="SettingsButton_Click"
+                        Height="50">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Assets/Settings-01-128.png"></ImageBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="Settings" 
+                               Foreground="White"
+                               Margin="5,0,0,0"
+                               VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+
+
+            </StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Frame x:Name="contentFrame"/>
+        </SplitView.Content>
+    </SplitView>
+</Page>

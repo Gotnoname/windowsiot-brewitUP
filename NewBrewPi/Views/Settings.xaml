@@ -1,0 +1,155 @@
+﻿<Page
+    x:Class="NewBrewPi.Views.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewBrewPi.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:settings="using:BrewLib"
+    Width="750"
+    Height="480"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="100"></Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+
+        <settings:BrewProfileSettings x:Key="ProfileSettings"></settings:BrewProfileSettings>
+    </Page.Resources>
+
+    <Grid DataContext="{Binding Instance, Source={StaticResource ProfileSettings}}"
+          Margin="20,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        
+        <TextBlock Text="Brew settings"
+                   VerticalAlignment="Bottom"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   Margin="5,0,0,10"
+                   FontSize="20"/>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1">
+            <StackPanel>
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding SSRHeaterGPIO, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="GPIO Heater"
+                           Foreground="White"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding SSRPumpGPIO, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="GPIO Pump"
+                           Foreground="White"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding BuzzerGPIO, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="GPIO Buzzer"
+                           Foreground="White"/>
+            </StackPanel>
+           
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="0,10,0,0"
+                    Grid.Row="2">
+            <StackPanel>
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding PIDKp, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="PID Kp"
+                           Foreground="White"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding PIDKi, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="PID Ki"
+                           Foreground="White"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding PIDKd, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="PID Kd"
+                           Foreground="White"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="0,10,0,0"
+                    Grid.Row="3">
+            <StackPanel>
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding MinimumBoilingTemperature, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="Boiling temp"
+                           Foreground="White"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding HeaterElementWatt, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="Heater effect"
+                           Foreground="White"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding TemperatureSanityValue, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="Temp sanity"
+                           Foreground="White"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="0,10,0,0"
+                    Grid.Row="4">
+            <StackPanel>
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding DropSlot1, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="GPIO drop 1"
+                           Foreground="White"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding DropSlot2, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="GPIO drop 2"
+                           Foreground="White"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding DropSlot3, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="GPIO drop 3"
+                           Foreground="White"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding DropSlot4, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="GPIO drop 4"
+                           Foreground="White"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding DropSlot5, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="GPIO drop 5"
+                           Foreground="White"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBox GotFocus="TextBox_GotFocus"
+                         Text="{Binding DropSlot6, Mode=TwoWay}"></TextBox>
+                <TextBlock Text="GPIO drop 6"
+                           Foreground="White"/>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Page>

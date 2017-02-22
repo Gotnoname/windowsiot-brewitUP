@@ -1,0 +1,158 @@
+﻿<Page
+    x:Class="NewBrewPi.Views.WiFi"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewBrewPi.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="using:NewBrewPi.Controls"
+    xmlns:wiFi="using:BrewLib.WiFi"
+    Width="750"
+    Height="480"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="ResultsListViewTemplate">
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" MinWidth="100"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Column="0" Grid.Row="0" Height="32" Width="32" Margin="0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Image Source="{Binding Path=WiFiImage}"
+                 Stretch="UniformToFill"/>
+                </Border>
+
+                <Border Grid.Column="1" Grid.Row="0"  Margin="5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ssid:" Margin="0,0,5,0" Foreground="White"/>
+                        <TextBlock Text="{Binding Path=Ssid}" Foreground="White" FontWeight="Bold" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="5">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Bssid:" Foreground="White" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding Path=Bssid}" Foreground="White" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Rssi:" Foreground="White" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding Path=Rssi}" Foreground="White"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ch. Frequency:" Foreground="White" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding Path=ChannelCenterFrequency}" Foreground="White" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=SecuritySettings}" Foreground="White" TextWrapping="Wrap" Margin="0,0,5,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontWeight="Bold" 
+                                       Text="{Binding Path=ConnectivityLevel}"
+                                       Foreground="{Binding Path=Background}"
+                                       TextWrapping="Wrap" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <wiFi:WiFiConnector x:Key="WiFiConnector"></wiFi:WiFiConnector>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/background.png"></ImageBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" 
+                    Grid.Column="0"
+                    Height="30"
+                    Background="#FF36414F"
+                    Grid.ColumnSpan="2">
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0">
+            <StackPanel
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+                <TextBlock Text="Enter Security key: "
+                           VerticalAlignment="Center"
+                           Foreground="White"
+                           Margin="6"></TextBlock>
+                <TextBox Width="200" 
+                             Margin="6" 
+                             IsEnabled="False"
+                             x:Name="NetworkPassword"
+                             GotFocus="NetworkKeyBox_GotFocus"></TextBox>
+                
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="6">
+                <CheckBox Content="Auto Reconnect" 
+                          Margin="6"
+                          Visibility="Collapsed"
+                          IsChecked="{Binding Path=IsAutomaticReconnection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></CheckBox>
+                <Button Content="Search"
+                        Margin="6"
+                        Width="80"
+                        Height="40" 
+                        Foreground="White"
+                        Click="SearchNetworks_ButtonClick"></Button>
+                <Button Content="Connect" 
+                        Width="80"
+                        Height="40"
+                        x:Name="ConnectNetworkButton"
+                        IsEnabled="False"
+                        Foreground="White"
+                        Click="ConnectToNetwork_ButtonClick"></Button>
+            </StackPanel>
+        </StackPanel>
+
+        <ListView Grid.Row="1" 
+                  Width="300"
+                  HorizontalAlignment="Right"
+                  Background="#318391"
+                 Grid.Column="1" 
+                 x:Name="ResultsListView"
+                  DataContext="{Binding Instance, Source={StaticResource WiFiConnector}}"
+                 SelectionChanged="Selector_OnSelectionChanged"
+                 Style="{StaticResource ListviewWiderScrollbar}"
+                 ItemTemplate="{StaticResource ResultsListViewTemplate}"
+                 ItemsSource="{Binding NetworkCollection, 
+                                UpdateSourceTrigger=PropertyChanged, 
+                                Mode=TwoWay}">
+
+        </ListView>
+
+        <ProgressRing Grid.Row="1" 
+                      Grid.Column="1"
+                      Width="100"
+                      Height="100"
+                      IsActive="False"
+                      x:Name="SearchProgressLoader"/>
+
+        <uc:SimpleVirtualKeyboard Grid.Row="2" 
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="2"
+                                  Visibility="Collapsed"
+                                  VerticalAlignment="Bottom" 
+                                  x:Name="VirtualKeyboard"/>
+
+    </Grid>
+</Page>
