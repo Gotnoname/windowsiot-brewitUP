@@ -100,7 +100,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BrewState.cs" />
     <Compile Include="Controls\CircularEnable.xaml.cs">
       <DependentUpon>CircularEnable.xaml</DependentUpon>
     </Compile>
