@@ -11,6 +11,10 @@ This is a WIP of a Windows 10 IoT brewing controller using, for example, a Raspb
 - Delayed brewing mode
 - Supports DS18B20 and DS18S20 temperature controllers thanks to Rinsen's OneWire library
 
+#TODO
+- Created a Web API so that the controller can be accessed and controlled by any device on the same network.
+- Clean up initial release work
+
 ![Screenshot](https://github.com/Gotnoname/windowsiot-brewitUP/blob/master/NewBrewPi/ImageExamples/1.png)
 ![Screenshot](https://github.com/Gotnoname/windowsiot-brewitUP/blob/master/NewBrewPi/ImageExamples/2.png)
 ![Screenshot](https://github.com/Gotnoname/windowsiot-brewitUP/blob/master/NewBrewPi/ImageExamples/3.png)
