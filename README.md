@@ -9,6 +9,7 @@ This is a WIP of a Windows 10 IoT brewing controller using, for example, a Raspb
 - Fully customized Raspberry pi GPIO usage. GPIO-pins are used to control heater, buzzer, pump, drop slots etc...
 - Sous Vide capabilities
 - Delayed brewing mode
+- Supports DS18B20 and DS18S20 temperature controllers thanks to Rinsen's OneWire library
 
 ![Screenshot](https://github.com/Gotnoname/windowsiot-brewitUP/blob/master/NewBrewPi/ImageExamples/1.png)
 ![Screenshot](https://github.com/Gotnoname/windowsiot-brewitUP/blob/master/NewBrewPi/ImageExamples/2.png)
@@ -17,3 +18,4 @@ This is a WIP of a Windows 10 IoT brewing controller using, for example, a Raspb
 # External
 - https://github.com/Rinsen/OneWire
 - https://github.com/ms-iot/pid-controller/tree/master/PidController/PidController
+- Icons from: http://flaticons.net/
