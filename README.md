@@ -15,6 +15,8 @@ This is a WIP of a Windows 10 IoT brewing controller using, for example, a Raspb
 - Created a Web API so that the controller can be accessed and controlled by any device on the same network.
 - Clean up initial release work
 
+#Screenshots
+
 ![Screenshot](https://github.com/Gotnoname/windowsiot-brewitUP/blob/master/NewBrewPi/ImageExamples/1.png)
 ![Screenshot](https://github.com/Gotnoname/windowsiot-brewitUP/blob/master/NewBrewPi/ImageExamples/2.png)
 ![Screenshot](https://github.com/Gotnoname/windowsiot-brewitUP/blob/master/NewBrewPi/ImageExamples/3.png)
