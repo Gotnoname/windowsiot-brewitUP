@@ -118,7 +118,6 @@
     <Compile Include="Hardware\Mockups\TemperatureSensorMock.cs" />
     <Compile Include="Hardware\OneWireTemperatureSensor.cs" />
     <Compile Include="Hardware\SolidStateRelayHandler.cs" />
-    <Compile Include="Hardware\SSROverride.cs" />
     <Compile Include="Hardware\TemperatureController.cs" />
     <Compile Include="Interfaces\IBrewLogic.cs" />
     <Compile Include="Interfaces\Implementations\BaseStep.cs" />

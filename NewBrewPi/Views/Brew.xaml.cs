@@ -33,7 +33,6 @@ namespace BrewitUP.Views
     public sealed partial class Brew : Page
     {
         public BrewLogic Logic { get; set; }
-        public IInformation Info { get; set; }
 
         public Brew()
         {
@@ -68,10 +67,9 @@ namespace BrewitUP.Views
             {
                 Logic = new BrewLogic(profile);                
                 StepsPanel.DataContext = Logic;
-                Info = new Information();
-                InfoGrid.DataContext = Info;
-                PieStep.DataContext = Info;
-                Pie.DataContext = Info;
+                InfoGrid.DataContext = Logic.Info;
+                PieStep.DataContext = Logic.Info;
+                Pie.DataContext = Logic.Info;
 
                 if(profile.DelayedStart)
                 {
@@ -104,53 +102,11 @@ namespace BrewitUP.Views
 
             Task.Run(async () =>
             {
-                var avgTemp = new List<double>();
                 int seconds = 0;
-                IStep prevStep = null;
                 while (Logic.IsRunning)
                 {
-                    try
-                    {
-                        var temperature = TemperatureController.Instance.Controller.Temperature;
-                        Graph.Add(temperature, seconds++);
-
-                        #region Average temperature
-                        if (prevStep != Logic.CurrentStep)
-                        {
-                            //Step has changed, clear out average temp
-                            avgTemp.Clear();
-                        }
-                        prevStep = Logic.CurrentStep;
-
-                        if (avgTemp.Count > Constants.TEMPERATE_GRAPH_LIMIT)
-                        {
-                            avgTemp.RemoveAt(0);
-                        } 
-                        #endregion
-                        avgTemp.Add(temperature);
-
-                        await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                        () =>
-                        {
-                            Info.AverageTemperature = Math.Round(avgTemp.Average(), 1);
-
-                            //The amount of energy used for this session
-                            Info.EnergyUsed = Math.Round((BrewProfileSettings.Instance.HeaterElementWatt * Logic.HeaterOnInHours) / 1000, 2);
-
-                            //Time spent brewing
-                            Info.ElapsedMinutes = Logic.TimeBrewingInMinutes;
-
-                            //Total progress of the brewing process
-                            Info.StepProgress = Logic.PercentageCompleted;
-
-                            Info.Temperature = Math.Round(temperature, 1);
-                        });
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-
+                    var temperature = TemperatureController.Instance.Controller.Temperature;
+                    Graph.Add(temperature, seconds++);
                     await Task.Delay(1000);
                 }
             });
@@ -159,7 +115,6 @@ namespace BrewitUP.Views
         private void StopBrewing_Click(object sender, RoutedEventArgs e)
         {
             Graph.Reset();
-            Info?.Reset();
             Logic?.Stop();
             StartBrewButton.IsEnabled = true;
             StopBrewButton.IsEnabled = false;

@@ -10,7 +10,6 @@ namespace BrewLib.Interfaces
     public interface IBrewLogic : IDisposable
     {
         bool IsRunning { get; set; }
-        int TimeBrewingInMinutes { get; set; }
         IStep CurrentStep { get; set; }
         IStep NextStep { get; set; }
 
