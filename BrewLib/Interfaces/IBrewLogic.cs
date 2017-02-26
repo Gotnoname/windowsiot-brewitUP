@@ -9,7 +9,7 @@ namespace BrewLib.Interfaces
 {
     public interface IBrewLogic : IDisposable
     {
-        bool IsRunning { get; set; }
+        bool IsRunning { get; }
         IStep CurrentStep { get; set; }
         IStep NextStep { get; set; }
 
